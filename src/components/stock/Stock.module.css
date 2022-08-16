@@ -1,0 +1,78 @@
+.container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+    border-top: solid var(--bg-secondary) 1px;
+    padding: 0.6rem;
+}
+
+.ticker {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin-bottom: 1.8rem;
+
+}
+
+.companyName {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: capitalize;
+}
+
+.price {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    text-align: right;
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin-bottom: 1.4rem;
+
+}
+
+.variableInfo {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    text-align: right;
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+.tickerLoading {
+    background-color: var(--bg-secondary);
+    height: 1.6rem;
+    width: 60px;
+    border-radius: 5px;
+}
+
+.companyNameLoading {
+    background-color: var(--bg-secondary);
+    height: 1.6rem;
+    width: 120px;
+    border-radius: 5px;
+}
+
+/* Only apply selected stock styling on desktop */
+@media only screen and (min-width: 800px) {
+    .selected {
+        background-color: var(--bg-secondary);
+        border-radius: 5px;
+    }
+    
+    .removeBorder {
+        border-top: solid transparent 1px;
+    }
+}
+

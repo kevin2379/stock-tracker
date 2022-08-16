@@ -1,0 +1,27 @@
+.container {
+    display: grid;
+    grid-template-columns: 340px auto;
+    grid-template-rows: 100%;
+    padding: 0rem;
+    height: calc(100vh - 4.2rem);
+}
+
+.leftColumn {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    margin: 0;
+    padding: 1rem;
+    overflow: scroll;
+}
+
+.rightColumn {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    margin: 0;
+    padding: 1rem;
+    overflow: scroll;
+}

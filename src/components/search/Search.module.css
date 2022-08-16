@@ -1,0 +1,38 @@
+.inline {
+    margin: auto;
+    height: 40px;
+    position: relative;
+}
+
+.icon {
+    padding: 0px;
+    background: url('../../icons/search.svg');
+    background-repeat: no-repeat;
+    /* background-size: cover; stretch the background to cover the whole element */
+
+    /* 
+       still inline, but has block features
+       meaning height and width can be set
+    */
+    position: absolute;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    top: 9px;
+    left: 6px;
+}
+
+.inputField {
+    width: 100%;
+    padding: 6px 0px 5px 28px;
+    text-align: left;
+    font-size: 1.6rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+    color: var(--text-secondary);
+    background-color: var(--bg-secondary);
+    margin: 0;
+    line-height: 1;
+    height: 35px;
+}

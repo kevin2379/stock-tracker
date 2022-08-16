@@ -1,0 +1,112 @@
+.firstRowContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.ticker {
+    font-weight: 700;
+    font-size: 3rem;
+    display: inline-block;
+}
+
+.companyName {
+    color: var(--text-secondary);
+    margin-left: 1rem;
+    font-size: 1.4rem;
+    display: inline-block;
+}
+
+.price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.dayChange {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-left: 1rem;
+    display: inline-block;
+}
+
+.exchangeCurrency {
+    color: var(--text-secondary);
+    font-size: 1.4rem;
+    line-height: 3rem;
+}
+
+.priceChange {
+    margin-left: auto;
+    vertical-align: middle;
+}
+
+.addButton {
+    margin-left: 1rem;
+    display: inline-block;
+}
+
+/* Mobile */
+@media only screen and (max-width: 800px) {
+    /* Move price and day change under ticker and company name */
+    .firstRowContainer {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+    }
+    
+    .priceChange {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .price {
+        line-height: 3.2rem;
+    }
+
+    .exchangeCurrency {
+        line-height: 1;
+    }
+
+    .addButton {
+        float: right;
+        margin-left: 0;
+    }
+}
+
+/* loading styles */
+
+.loading {
+    background-color: var(--bg-secondary);
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.tickerLoading {
+    height: 3rem;
+    width: 60px;
+}
+
+.companyNameLoading {
+    height: 1.2rem;
+    width: 120px;
+    margin-left: 1rem;
+}
+
+.priceLoading {
+    height: 1.2rem;
+    width: 40px;
+    margin-left: 1rem;
+}
+
+.dayChangeLoading {
+    height: 1.2rem;
+    width: 40px;
+    margin-left: 1rem;
+}
+
+.exchangeCurrencyLoading {
+    height: 1.2rem;
+    width: 120px;
+    margin-top: 1rem;
+}

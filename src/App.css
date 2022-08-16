@@ -1,39 +1,84 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
+
+html {
+  height: 100%;
+}
+body {
+  /* Color Pallete */
+  --text-primary: #ffffff;
+  --text-secondary: #C6C6C6;
+  --bg-primary: #131317;
+  --bg-secondary: #282730;
+  --green: #39D557;
+  --red: #D13B3B;
+
+  --speed: 500ms;
+
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Montserrat', sans-serif;
+  height: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+input {
+  appearance: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
+input[type="search"] {
+  appearance: none;
 }
 
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+
+input::placeholder {
+  color: var(--text-secondary);
 }
 
-.App-link {
-  color: rgb(112, 76, 182);
+input:focus {
+  outline: none;
+  border: 1px solid rgb(34, 34, 171);
 }
 
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+input:active {
+  color: var(--text-secondary)
+}
+
+.button2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--text-primary);
+  background-color: var(--green);
+  padding: 0.8rem 1.2rem;
+  border: 0.1rem solid var(--green);
+  border-radius: 1.6rem;
+  transition: all 0.1s ease-in-out;
+  height: fit-content;
+  line-height: 1;
+}
+
+.button2:hover {
+  color: var(--green);
+  background-color: var(--text-primary);
+  cursor: pointer;
+}
+
+.button2:focus {
+  outline: none;
+}
+
+.button2:active {
+  opacity: 0.85;
+}
+
+/* Change number colors based on positive, negative or neutral value */
+.number-positive {
+  color: var(--green)
+}
+
+.number-negative {
+  color: var(--red)
+}
+
+.number-neutral {
+  color: var(--text-primary)
 }
