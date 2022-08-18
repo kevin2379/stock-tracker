@@ -9,7 +9,6 @@ import { QuoteContainer } from './components/quoteContainer/QuoteContainer';
 import { useSelector, useDispatch } from 'react-redux';
 import {
     selectStocks,
-    updateStockPrice,
     updateWatchlistPrices,
   } from './components/stockList/stocksSlice';
 
@@ -33,8 +32,8 @@ function App() {
     <Router>
       <Header />
       <Routes>
-        <Route path='/' exact element={<Navigate to='/quote/APPL'></Navigate>} /> {/* News to come later. For now redirects to apple stock quote */}
-        <Route path='/quote' exact element={<Navigate to='/quote/APPL'></Navigate>} /> {/* Will later redirect to '/' when there's general news. For now redirects to apple stock quote */}
+        <Route path='/' exact element={<Navigate to='/quote/AAPL'></Navigate>} /> {/* News to come later. For now redirects to apple stock quote */}
+        <Route path='/quote' exact element={<Navigate to='/quote/AAPL'></Navigate>} /> {/* Will later redirect to '/' when there's general news. For now redirects to apple stock quote */}
         <Route path='/quote/:symbol' element={
           <ColumnLayout 
             leftColumn={

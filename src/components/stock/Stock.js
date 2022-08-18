@@ -56,7 +56,7 @@ export function Stock({ stock, isLookup = false, loading = false, selected = fal
 
         return (
             <div 
-                className={stockStyles.container + ' ' + (selected ? stockStyles.selected : null) + ' ' + (removeBorder ? stockStyles.removeBorder : null)} 
+                className={stockStyles.container + ' ' + (selected ? stockStyles.selected : '') + ' ' + (removeBorder ? stockStyles.removeBorder : '')} 
                 onClick={handleClick}
             >
                 <div className={stockStyles.ticker}>

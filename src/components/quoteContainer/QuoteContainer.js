@@ -1,18 +1,17 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
-    selectQuote,
     fetchCompanyProfile,
     fetchOHLCV,
     fetchQuote,
   } from './quoteSlice';
 import { useParams } from "react-router-dom";
-import { WatchlistAddButton } from '../watchlistAddButton/WatchlistAddButton';
 import { QuoteHeader } from '../quoteHeader/QuoteHeader';
+import { QuoteChart } from '../quoteChart/QuoteChart';
+import { QuoteChartTimeFilter } from '../quoteChartTimeFilter/QuoteChartTimeFilter';
 
 
 export function QuoteContainer() {
-    const quote = useSelector(selectQuote);
     const dispatch = useDispatch();
     const { symbol } = useParams();
 
@@ -20,11 +19,13 @@ export function QuoteContainer() {
         dispatch(fetchCompanyProfile(symbol));
         dispatch(fetchQuote(symbol));
         dispatch(fetchOHLCV(symbol));
-    }, [symbol])
+    }, [symbol, dispatch])
 
     return(
         <>
             <QuoteHeader symbol={symbol} />
+            <QuoteChartTimeFilter />
+            <QuoteChart />
         </>
     );
 }

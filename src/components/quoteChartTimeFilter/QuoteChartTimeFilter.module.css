@@ -1,0 +1,18 @@
+.container {
+    margin: 1rem 0;
+}
+
+.button {
+    color: var(--text-primary);
+    background-color: transparent;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-right: 1rem;
+    appearance: none;
+    border-style: none;
+    border-width: 0;
+}
+
+.buttonActive {
+    background-color: var(--bg-secondary);
+}

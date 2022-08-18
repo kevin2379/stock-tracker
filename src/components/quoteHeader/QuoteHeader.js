@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
     selectQuote,
   } from '../quoteContainer/quoteSlice';
@@ -8,7 +8,6 @@ import { WatchlistAddButton } from "../watchlistAddButton/WatchlistAddButton";
 
 export function QuoteHeader({ symbol }) {
     const quote = useSelector(selectQuote);
-    const dispatch = useDispatch();
 
     const loading = quote.companyProfile.loading || quote.quote.loading;
     const hasError = quote.companyProfile.hasError || quote.quote.hasError;
@@ -18,7 +17,7 @@ export function QuoteHeader({ symbol }) {
             <div className={quoteHeaderStyles.container}>
                 <div className={quoteHeaderStyles.firstRowContainer}>
                     <div className={quoteHeaderStyles.tickerName}>
-                        <div className={quoteHeaderStyles.tickerLoading + ' ' + quoteHeaderStyles.loading}></div>
+                        <div className={quoteHeaderStyles.ticker}>{symbol}</div>
                         <div className={quoteHeaderStyles.companyNameLoading + ' ' + quoteHeaderStyles.loading}></div>
                     </div>
                     <div className={quoteHeaderStyles.priceChange}>

@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit';
 import { Finnhub } from '../../api/Finnhub';
 
 const initialState = {
@@ -78,9 +78,6 @@ export const updateWatchlistPrices = createAsyncThunk(
     'stocks/updateWatchlistPrices',
     async (watchlist, { rejectWithValue, getState }) => {
         const state = getState();
-
-        console.log('updateWatchlistPrices call with the folowing watchlist: ');
-        console.log(state.stocks.watchlist.data);
 
         const response = await Finnhub.fetchWatchlistQuotes(state.stocks.watchlist.data);
 
@@ -169,13 +166,16 @@ export const stocksSlice = createSlice({
             state.watchlist.loading = false;
             state.watchlist.hasError = false;
 
+            console.log('updateWatchlistPrices.fulfilled');
             // Loop through payload object and update quote for each stock 
             for (let i = 0; i < Object.keys(action.payload).length; i++) {
-                console.log('loop ran');
                 const currentStockSymbol = Object.keys(action.payload)[i];
                 const matchingWatchlistIndex = state.watchlist.data.findIndex((stock) => stock.symbol === currentStockSymbol);
                 state.watchlist.data[matchingWatchlistIndex].quote = action.payload[currentStockSymbol];
             }
+            console.log('current apple object');
+            console.log(current(state.watchlist.data[0]));
+
         },
         [updateWatchlistPrices.rejected]: (state, action) => {
             state.watchlist.loading = false;
@@ -189,7 +189,7 @@ export const stocksSlice = createSlice({
 export const { 
     setSearchTerm, 
     setSearchResultsLoading, 
-    addToWatchlist ,
+    addToWatchlist,
 } = stocksSlice.actions;
 
 export const selectStocks = (state) => state.stocks;

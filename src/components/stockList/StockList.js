@@ -1,10 +1,8 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import {
     selectStocks,
-    updateStockPrice,
   } from './stocksSlice';
-import stockListStyles from './StockList.module.css';
 import { Stock } from '../stock/Stock';
 import { SearchResults } from '../searchResults/SearchResults';
 import { useParams } from "react-router-dom";

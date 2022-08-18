@@ -5,19 +5,20 @@ const initialState = {
     companyProfile: {
         loading: true,
         hasError: false,
-        data: [],
+        data: {},
     },
     quote: {
         loading: true,
         hasError: false,
-        data: [],
+        data: {},
     },
     OHLCV: {
         loading: true,
         hasError: false,
-        data: [],
+        data: {},
     },
-}
+    chartTimeFilter: '1Y',
+};
 
 export const fetchCompanyProfile = createAsyncThunk(
     'stocks/fetchCompanyProfile',
@@ -83,7 +84,9 @@ export const quoteSlice = createSlice({
     name: 'quote',
     initialState,
     reducers: {
-
+        setChartTimeFilter: (state, action) => {
+            state.chartTimeFilter = action.payload;
+        }
     },
     extraReducers: {
         [fetchCompanyProfile.pending]: (state, action) => {
@@ -134,7 +137,7 @@ export const quoteSlice = createSlice({
     },
 })
 
-export const {  } = quoteSlice.actions;
+export const { setChartTimeFilter } = quoteSlice.actions;
 
 export const selectQuote = (state) => state.quote;
 

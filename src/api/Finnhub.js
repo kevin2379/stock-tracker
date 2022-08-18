@@ -93,8 +93,8 @@ const Finnhub = {
     },
     async fetchOHLCV(symbol) {
         const resolution = "D"; // Supported resolution includes 1, 5, 15, 30, 60, D, W, M 
-        const from = 1590988249; // UNIX timestamp. Interval initial value.
-        const to = 1591852249; // UNIX timestamp. Interval end value.
+        const from = Math.floor(Date.now() / 1000) - (365 * 24 * 60 * 60); // UNIX timestamp. Interval initial value. 1 year ago
+        const to = Math.floor(Date.now() / 1000); // UNIX timestamp. Interval end value.
 
         try {
             const response = await fetch(`${baseURL}/stock/candle?symbol=${symbol}&resolution=${resolution}&from=${from}&to=${to}&token=${apiKey}`);

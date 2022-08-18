@@ -5,7 +5,7 @@ import Logo from '../../icons/logo.svg';
 export function Header() {
     return (
         <div className={headerStyles.container}>
-            <img src={Logo} alt="Stock tracker logo"></img>
+            <img src={Logo} alt="Stock tracker logo" role="img"></img>
             <div className={headerStyles.appName}>Stock Tracker</div>
         </div>
     );

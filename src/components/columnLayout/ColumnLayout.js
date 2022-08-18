@@ -37,7 +37,7 @@ const styles = {
 };
 
 export function ColumnLayout({leftColumn, rightColumn}) {
-    const [width, height] = useWindowSize();
+    const width = useWindowSize()[0];
     const columnLayout = useSelector(selectColumnLayout);
 
     if (width > 800) {

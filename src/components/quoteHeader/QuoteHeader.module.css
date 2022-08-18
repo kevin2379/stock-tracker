@@ -82,11 +82,6 @@
     display: inline-block;
 }
 
-.tickerLoading {
-    height: 3rem;
-    width: 60px;
-}
-
 .companyNameLoading {
     height: 1.2rem;
     width: 120px;
@@ -109,4 +104,5 @@
     height: 1.2rem;
     width: 120px;
     margin-top: 1rem;
+    margin-bottom: 0.5rem;
 }

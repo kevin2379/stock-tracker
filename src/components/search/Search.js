@@ -20,6 +20,7 @@ export function Search() {
                 placeholder='Search'
                 value={stocks.searchTerm}
                 onChange={(e) => dispatch(setSearchTerm(e.target.value))}
+                role='searchbox'
             ></input>
         </form>
     );
