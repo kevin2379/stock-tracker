@@ -11,6 +11,7 @@ import {
     selectStocks,
     updateWatchlistPrices,
   } from './components/stockList/stocksSlice';
+//import { server } from './testServer';
 
 function App() {
   const stocks = useSelector(selectStocks);
@@ -25,6 +26,10 @@ function App() {
 
     // Update prices every minute
     const updateWatchlistPricesInterval = setInterval(updateWatchlistPricesFn, 1000 * 60);
+
+    //run mock service worker for testing
+    //server.listen();
+
     return () => clearInterval(updateWatchlistPricesInterval);
   }, []);
 

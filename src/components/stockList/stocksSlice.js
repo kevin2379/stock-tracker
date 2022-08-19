@@ -46,33 +46,36 @@ const initialState = {
 
 export const fetchSymbols = createAsyncThunk(
     'stocks/fetchSymbols',
-    async (searchTerm) => {
+    async (searchTerm, { rejectWithValue }) => {
         const response = await Finnhub.symbolLookup(searchTerm);
-        return response;
+
+        function dataExists() {
+            if (typeof response.count !== 'number') {
+                console.log('count error');
+                return false;
+            }
+            for (let i = 0; i < response.result.length; i++) {
+                if (
+                    typeof response.result[i].description === 'string' && 
+                    typeof response.result[i].displaySymbol === 'string' && 
+                    typeof response.result[i].symbol === 'string' && 
+                    typeof response.result[i].type === 'string'
+                ) {
+                    // Do nothing
+                } else {
+                    return false
+                }
+                return true
+            }
+        }
+
+        if (dataExists()) {
+            return response;
+        } else {
+            return rejectWithValue(`Response missing data when fetching searched symbols.`);
+        }    
     }
 )
-
-// export const updateStockPrice = createAsyncThunk(
-//     'stocks/updatePrice',
-//     async (symbol, { rejectWithValue }) => {
-//         const stocks = useSelector(selectStocks);
-//         const response = await Finnhub.fetchQuote(symbol);
-//         const dataExists = (
-//             typeof response.c === 'number' && 
-//             typeof response.d === 'number' && 
-//             typeof response.dp === 'number' && 
-//             typeof response.h === 'number' && 
-//             typeof response.l === 'number' && 
-//             typeof response.o === 'number'
-//         );
-//         if (dataExists) {
-//             const index = stocks.watchlist.findIndex((stock) => stock.symbol === symbol);
-//             return { symbol: symbol, index: index, response: response };
-//         } else {
-//             return rejectWithValue(`Quote response missing data when updating stock price for ${symbol}.`);
-//         }
-//     }
-// )
 
 export const updateWatchlistPrices = createAsyncThunk(
     'stocks/updateWatchlistPrices',
@@ -100,7 +103,7 @@ export const updateWatchlistPrices = createAsyncThunk(
             }
         }
 
-        if (dataExists) {
+        if (dataExists()) {
             return response;
         } else {
             return rejectWithValue(`Quote response missing data when updating stock prices.`);
@@ -141,23 +144,6 @@ export const stocksSlice = createSlice({
             console.log('fetch symbols error:');
             console.log(action.payload);
         },
-        // [updateStockPrice.pending]: (state, action) => {
-        //     state.watchlist[action.payload.index].quoteLoading = true;
-        //     state.watchlist[action.payload.index].quoteHasError = false;
-        // },
-        // [updateStockPrice.fulfilled]: (state, action) => {
-        //     state.watchlist[action.payload.index].quoteLoading = false;
-        //     state.watchlist[action.payload.index].quoteHasError = false;
-        //     state.watchlist[action.payload.index].quote = action.payload.response;
-        // },
-        // [updateStockPrice.rejected]: (state, action) => {
-        //     console.log('action.payload:');
-        //     console.log(action.payload);
-        //     state.watchlist[action.payload.index].quoteLoading = false;
-        //     state.watchlist[action.payload.index].quoteHasError = true;
-        //     console.log(`error when fetching updated price for ${action.payload.symbol}`);
-        //     console.log(action.payload);
-        // },
         [updateWatchlistPrices.pending]: (state, action) => {
             state.watchlist.loading = true;
             state.watchlist.hasError = false;
@@ -166,16 +152,12 @@ export const stocksSlice = createSlice({
             state.watchlist.loading = false;
             state.watchlist.hasError = false;
 
-            console.log('updateWatchlistPrices.fulfilled');
             // Loop through payload object and update quote for each stock 
             for (let i = 0; i < Object.keys(action.payload).length; i++) {
                 const currentStockSymbol = Object.keys(action.payload)[i];
                 const matchingWatchlistIndex = state.watchlist.data.findIndex((stock) => stock.symbol === currentStockSymbol);
                 state.watchlist.data[matchingWatchlistIndex].quote = action.payload[currentStockSymbol];
             }
-            console.log('current apple object');
-            console.log(current(state.watchlist.data[0]));
-
         },
         [updateWatchlistPrices.rejected]: (state, action) => {
             state.watchlist.loading = false;

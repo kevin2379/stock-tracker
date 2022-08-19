@@ -15,6 +15,7 @@ export function QuoteChart() {
     const quote = useSelector(selectQuote);
 
     if (quote.OHLCV.loading) {
+
         return <img src={chartLoading} className={quoteChartStyles.loading} alt="chart loading"></img>
     } else if (quote.OHLCV.hasError) {
         return <p>Error loading chart</p>
