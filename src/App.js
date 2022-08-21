@@ -11,7 +11,7 @@ import {
     selectStocks,
     updateWatchlistPrices,
   } from './components/stockList/stocksSlice';
-//import { server } from './testServer';
+import { APILimitError } from './components/APILimitError/APILimitError';
 
 function App() {
   const stocks = useSelector(selectStocks);
@@ -36,6 +36,8 @@ function App() {
   return (
     <Router>
       <Header />
+      <APILimitError />
+      
       <Routes>
         <Route path='/' exact element={<Navigate to='/quote/AAPL'></Navigate>} /> {/* News to come later. For now redirects to apple stock quote */}
         <Route path='/quote' exact element={<Navigate to='/quote/AAPL'></Navigate>} /> {/* Will later redirect to '/' when there's general news. For now redirects to apple stock quote */}

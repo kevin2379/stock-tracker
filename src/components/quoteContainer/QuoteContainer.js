@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import { QuoteHeader } from '../quoteHeader/QuoteHeader';
 import { QuoteChart } from '../quoteChart/QuoteChart';
 import { QuoteChartTimeFilter } from '../quoteChartTimeFilter/QuoteChartTimeFilter';
+import { DataBar } from '../dataBar/DataBar';
 
 
 export function QuoteContainer() {
@@ -26,6 +27,7 @@ export function QuoteContainer() {
             <QuoteHeader symbol={symbol} />
             <QuoteChartTimeFilter />
             <QuoteChart />
+            <DataBar />
         </>
     );
 }

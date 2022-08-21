@@ -8,6 +8,8 @@ const Finnhub = {
             if (response.ok) {
                 const jsonResponse = await response.json();
                 return jsonResponse;
+            } else if (response.status === 429) {
+                return 429;
             }
         }
         catch(error) {
@@ -32,6 +34,8 @@ const Finnhub = {
             if (response.ok) {
                 const jsonResponse = await response.json();
                 return jsonResponse;
+            } else if (response.status === 429) {
+                return 429;
             }
         }
         catch(error) {
@@ -44,6 +48,8 @@ const Finnhub = {
             if (response.ok) {
                 const jsonResponse = await response.json();
                 return jsonResponse;
+            } else if (response.status === 429) {
+                return 429;
             }
         }
         catch(error) {
@@ -59,6 +65,8 @@ const Finnhub = {
 
             if (errors.length > 0) {
                 throw errors.map((response) => Error(response.statusText));
+            } else if (responses[0].status === 429) {
+                return 429;
             } else {
                 const json = responses.map((response) => response.json());
                 const data = await Promise.all(json);
@@ -75,22 +83,22 @@ const Finnhub = {
             errors.forEach((error) => console.error(error));
         }
     },
-    async fetchTickData(symbol) {
-        const date = '2022-08-12'; // Adjust to be today's date
-        const limit = 500;
-        const skip = 0;
+    // async fetchTickData(symbol) {
+    //     const date = '2022-08-12'; // Adjust to be today's date
+    //     const limit = 500;
+    //     const skip = 0;
 
-        try {
-            const response = await fetch(`https://tick.finnhub.io/stock/tick?symbol=${symbol}&date=${date}&limit=${limit}&skip=${skip}&token=${apiKey}`);
-            if (response.ok) {
-                const jsonResponse = await response.json();
-                return jsonResponse;
-            }
-        }
-        catch(error) {
-            console.log(error);
-        }
-    },
+    //     try {
+    //         const response = await fetch(`https://tick.finnhub.io/stock/tick?symbol=${symbol}&date=${date}&limit=${limit}&skip=${skip}&token=${apiKey}`);
+    //         if (response.ok) {
+    //             const jsonResponse = await response.json();
+    //             return jsonResponse;
+    //         }
+    //     }
+    //     catch(error) {
+    //         console.log(error);
+    //     }
+    // },
     async fetchOHLCV(symbol) {
         const resolution = "D"; // Supported resolution includes 1, 5, 15, 30, 60, D, W, M 
         const from = Math.floor(Date.now() / 1000) - (365 * 24 * 60 * 60); // UNIX timestamp. Interval initial value. 1 year ago
@@ -101,6 +109,8 @@ const Finnhub = {
             if (response.ok) {
                 const jsonResponse = await response.json();
                 return jsonResponse;
+            } else if (response.status === 429) {
+                return 429;
             }
         }
         catch(error) {

@@ -1,5 +1,6 @@
 import quoteReducer, {
-    setChartTimeFilter
+    setChartTimeFilter,
+    APILimitReached,
 } from './quoteSlice';
 
 describe('quote reducer', () => {
@@ -91,10 +92,15 @@ describe('quote reducer', () => {
                 data: {},
             },
             chartTimeFilter: '1Y',
+            APILimitReached: false,
         });
     });
     it('should handle setChartTimeFilter', () => {
         const actual = quoteReducer(initialState, setChartTimeFilter('7D'));
         expect(actual.chartTimeFilter).toEqual('7D');
     });
+    it('should handle APILimitReached', () => {
+        const actual = quoteReducer(initialState, APILimitReached(true));
+        expect(actual.APILimitReached).toEqual(true);
+    })
 });

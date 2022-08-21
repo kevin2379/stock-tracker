@@ -71,6 +71,8 @@ export const fetchSymbols = createAsyncThunk(
 
         if (dataExists()) {
             return response;
+        } else if (response === 429) {
+            return 429;
         } else {
             return rejectWithValue(`Response missing data when fetching searched symbols.`);
         }    
@@ -105,6 +107,8 @@ export const updateWatchlistPrices = createAsyncThunk(
 
         if (dataExists()) {
             return response;
+        } else if (response === 429) {
+            return 429;
         } else {
             return rejectWithValue(`Quote response missing data when updating stock prices.`);
         }
@@ -136,7 +140,12 @@ export const stocksSlice = createSlice({
         [fetchSymbols.fulfilled]: (state, action) => {
             state.searchResults.loading = false;
             state.searchResults.hasError = false;
-            state.searchResults.results = action.payload;
+            if (action.payload === 429) {
+                state.APILimitReached = true;
+            } else {
+                state.APILimitReached = false;
+                state.searchResults.results = action.payload;
+            }
         },
         [fetchSymbols.rejected]: (state, action) => {
             state.searchResults.loading = false;
@@ -151,12 +160,16 @@ export const stocksSlice = createSlice({
         [updateWatchlistPrices.fulfilled]: (state, action) => {
             state.watchlist.loading = false;
             state.watchlist.hasError = false;
-
-            // Loop through payload object and update quote for each stock 
-            for (let i = 0; i < Object.keys(action.payload).length; i++) {
-                const currentStockSymbol = Object.keys(action.payload)[i];
-                const matchingWatchlistIndex = state.watchlist.data.findIndex((stock) => stock.symbol === currentStockSymbol);
-                state.watchlist.data[matchingWatchlistIndex].quote = action.payload[currentStockSymbol];
+            if (action.payload === 429) {
+                state.APILimitReached = true;
+            } else {
+                state.APILimitReached = false;
+                // Loop through payload object and update quote for each stock 
+                for (let i = 0; i < Object.keys(action.payload).length; i++) {
+                    const currentStockSymbol = Object.keys(action.payload)[i];
+                    const matchingWatchlistIndex = state.watchlist.data.findIndex((stock) => stock.symbol === currentStockSymbol);
+                    state.watchlist.data[matchingWatchlistIndex].quote = action.payload[currentStockSymbol];
+                }
             }
         },
         [updateWatchlistPrices.rejected]: (state, action) => {

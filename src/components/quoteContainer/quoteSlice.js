@@ -18,6 +18,7 @@ const initialState = {
         data: {},
     },
     chartTimeFilter: '1Y',
+    APILimitReached: false,
 };
 
 export const fetchCompanyProfile = createAsyncThunk(
@@ -33,6 +34,8 @@ export const fetchCompanyProfile = createAsyncThunk(
 
         if (dataExists) {
             return response;
+        } else if (response === 429) {
+            return 429;
         } else {
             return rejectWithValue('Company profile response missing data.');
         }
@@ -54,6 +57,8 @@ export const fetchQuote = createAsyncThunk(
         );
         if (dataExists) {
             return response;
+        } else if (response === 429) {
+            return 429;
         } else {
             return rejectWithValue('Quote response missing data.');
         }
@@ -74,6 +79,8 @@ export const fetchOHLCV = createAsyncThunk(
             // Check to make sure that all necessary data is there.
             // May need to add more checks once required values are known
             return response;
+        } else if (response === 429) {
+            return 429;
         } else {
             return rejectWithValue('OHLCV response missing data.');
         }
@@ -86,6 +93,9 @@ export const quoteSlice = createSlice({
     reducers: {
         setChartTimeFilter: (state, action) => {
             state.chartTimeFilter = action.payload;
+        },
+        APILimitReached: (state, action) => {
+            state.APILimitReached = action.payload;
         }
     },
     extraReducers: {
@@ -96,7 +106,12 @@ export const quoteSlice = createSlice({
         [fetchCompanyProfile.fulfilled]: (state, action) => {
             state.companyProfile.loading = false;
             state.companyProfile.hasError = false;
-            state.companyProfile.data = action.payload;
+            if (action.payload === 429) {
+                state.APILimitReached = true;
+            } else {
+                state.APILimitReached = false;
+                state.companyProfile.data = action.payload;
+            }
         },
         [fetchCompanyProfile.rejected]: (state, action) => {
             state.companyProfile.loading = false;
@@ -111,7 +126,12 @@ export const quoteSlice = createSlice({
         [fetchQuote.fulfilled]: (state, action) => {
             state.quote.loading = false;
             state.quote.hasError = false;
-            state.quote.data = action.payload;
+            if (action.payload === 429) {
+                state.APILimitReached = true;
+            } else {
+                state.APILimitReached = false;
+                state.quote.data = action.payload;
+            }
         },
         [fetchQuote.rejected]: (state, action) => {
             state.quote.loading = false;
@@ -126,7 +146,12 @@ export const quoteSlice = createSlice({
         [fetchOHLCV.fulfilled]: (state, action) => {
             state.OHLCV.loading = false;
             state.OHLCV.hasError = false;
-            state.OHLCV.data = action.payload;
+            if (action.payload === 429) {
+                state.APILimitReached = true;
+            } else {
+                state.APILimitReached = false;
+                state.OHLCV.data = action.payload;
+            }
         },
         [fetchOHLCV.rejected]: (state, action) => {
             state.OHLCV.loading = false;
@@ -137,7 +162,7 @@ export const quoteSlice = createSlice({
     },
 })
 
-export const { setChartTimeFilter } = quoteSlice.actions;
+export const { setChartTimeFilter, APILimitReached } = quoteSlice.actions;
 
 export const selectQuote = (state) => state.quote;
 

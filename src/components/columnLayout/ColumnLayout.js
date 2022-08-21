@@ -48,7 +48,9 @@ export function ColumnLayout({leftColumn, rightColumn}) {
                     {leftColumn}
                 </div>
                 <div className={columnLayoutStyles.rightColumn}>
-                    {rightColumn}
+                    <div style={{maxWidth: '1200px', margin: '0 auto'}}>
+                        {rightColumn}
+                    </div>
                 </div>
             </div>
         );
