@@ -57,7 +57,7 @@ export function ColumnLayout({leftColumn, rightColumn}) {
     } else {
         // Mobile layout
         return (
-            <SwipeableViews index={columnLayout.index} >
+            <SwipeableViews index={columnLayout.index} disabled={true}>
                 <div style={Object.assign({}, styles.slide, styles.slide1)}>
                     {leftColumn}
                 </div>
