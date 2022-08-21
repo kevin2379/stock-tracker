@@ -99,8 +99,4 @@ describe('quote reducer', () => {
         const actual = quoteReducer(initialState, setChartTimeFilter('7D'));
         expect(actual.chartTimeFilter).toEqual('7D');
     });
-    it('should handle APILimitReached', () => {
-        const actual = quoteReducer(initialState, APILimitReached(true));
-        expect(actual.APILimitReached).toEqual(true);
-    })
 });

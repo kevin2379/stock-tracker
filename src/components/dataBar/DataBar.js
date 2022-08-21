@@ -86,9 +86,9 @@ export function DataBar() {
     } else if (quote.companyProfile.hasError || quote.quote.hasError || quote.OHLCV.hasError) {
         return <p>Error loading data</p>
     } else {
-        const open = typeof quote.quote.data.o !== 'undefined' ? quote.quote.data.o.toFixed(2) : '';
-        const high = typeof quote.quote.data.h !== 'undefined' ? quote.quote.data.h.toFixed(2) : '';
-        const low = typeof quote.quote.data.l !== 'undefined' ? quote.quote.data.l.toFixed(2) : '';
+        const open = typeof quote.quote.data.o !== 'undefined' ? quote.quote.data.o.toFixed(2) : '-';
+        const high = typeof quote.quote.data.h !== 'undefined' ? quote.quote.data.h.toFixed(2) : '-';
+        const low = typeof quote.quote.data.l !== 'undefined' ? quote.quote.data.l.toFixed(2) : '-';
 
         const vol = () => {
             if (typeof quote.OHLCV.data.v !== 'undefined') {
@@ -99,7 +99,8 @@ export function DataBar() {
                 }
                 return volFormatted;
             } else {
-                console.log('Error: OHLCV volume data does not exist')
+                console.log('Error: OHLCV volume data does not exist');
+                return '-';
             }
         }
 
@@ -116,7 +117,8 @@ export function DataBar() {
                 }
                 return sharesFormatted;
             } else {
-                console.log('Error: shares outstanding data does not exist')
+                console.log('Error: shares outstanding data does not exist');
+                return '-';
             }
         }
         const mktCap = () => {

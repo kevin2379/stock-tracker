@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Finnhub } from '../../api/Finnhub';
 
 const initialState = {
@@ -42,6 +42,7 @@ const initialState = {
         hasError: false, 
         results: {}
     }, 
+    APILimitReached: false,
 };
 
 export const fetchSymbols = createAsyncThunk(
@@ -131,6 +132,9 @@ export const stocksSlice = createSlice({
         addToWatchlist: (state, action) => {
             state.watchlist.data.push(action.payload);
         },
+        stocksAPILimitReachedOff: (state, action) => {
+            state.APILimitReached = false;
+        }
     },
     extraReducers: {
         [fetchSymbols.pending]: (state, action) => {
@@ -143,7 +147,6 @@ export const stocksSlice = createSlice({
             if (action.payload === 429) {
                 state.APILimitReached = true;
             } else {
-                state.APILimitReached = false;
                 state.searchResults.results = action.payload;
             }
         },
@@ -163,7 +166,6 @@ export const stocksSlice = createSlice({
             if (action.payload === 429) {
                 state.APILimitReached = true;
             } else {
-                state.APILimitReached = false;
                 // Loop through payload object and update quote for each stock 
                 for (let i = 0; i < Object.keys(action.payload).length; i++) {
                     const currentStockSymbol = Object.keys(action.payload)[i];
@@ -185,6 +187,7 @@ export const {
     setSearchTerm, 
     setSearchResultsLoading, 
     addToWatchlist,
+    stocksAPILimitReachedOff,
 } = stocksSlice.actions;
 
 export const selectStocks = (state) => state.stocks;

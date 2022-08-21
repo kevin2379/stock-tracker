@@ -94,8 +94,8 @@ export const quoteSlice = createSlice({
         setChartTimeFilter: (state, action) => {
             state.chartTimeFilter = action.payload;
         },
-        APILimitReached: (state, action) => {
-            state.APILimitReached = action.payload;
+        APILimitReachedOff: (state, action) => {
+            state.APILimitReached = false;
         }
     },
     extraReducers: {
@@ -109,7 +109,6 @@ export const quoteSlice = createSlice({
             if (action.payload === 429) {
                 state.APILimitReached = true;
             } else {
-                state.APILimitReached = false;
                 state.companyProfile.data = action.payload;
             }
         },
@@ -129,7 +128,6 @@ export const quoteSlice = createSlice({
             if (action.payload === 429) {
                 state.APILimitReached = true;
             } else {
-                state.APILimitReached = false;
                 state.quote.data = action.payload;
             }
         },
@@ -149,7 +147,6 @@ export const quoteSlice = createSlice({
             if (action.payload === 429) {
                 state.APILimitReached = true;
             } else {
-                state.APILimitReached = false;
                 state.OHLCV.data = action.payload;
             }
         },
@@ -162,7 +159,7 @@ export const quoteSlice = createSlice({
     },
 })
 
-export const { setChartTimeFilter, APILimitReached } = quoteSlice.actions;
+export const { setChartTimeFilter, APILimitReachedOff } = quoteSlice.actions;
 
 export const selectQuote = (state) => state.quote;
 

@@ -90,6 +90,7 @@ describe('stocks reducer', () => {
                 hasError: false, 
                 results: {}
             }, 
+            APILimitReached: false,
         });
     });
     it('should handle setSearchTerm', () => {

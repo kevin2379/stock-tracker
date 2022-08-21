@@ -24,6 +24,8 @@ afterEach(() => {
   container = null;
 });
 
+
+
 it('renders without crashing', () => {
   act(() => {
     render(
@@ -190,4 +192,20 @@ it('handles API failure when loading OHLCV chart data', async () => {
   );
 
   expect(await screen.findByText('Error loading chart')).toBeVisible();
+})
+
+it('handles API 429 error (limit reached)', async () => {
+  server.use(
+    rest.get(`${baseURL}/search`, (req, res, ctx) => {
+      return res(ctx.status(429));
+    })
+  )
+
+  render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+
+  expect(await screen.findByText(/API limit reached/i)).toBeVisible();
 })
