@@ -4,7 +4,6 @@ import {
     leftColumn,
   } from '../columnLayout/columnLayoutSlice';
 import leftIcon from '../../icons/chevron-left.svg';
-import Tooltip from '@mui/material/Tooltip';
 
 export function BackButton() {
     const dispatch = useDispatch();
@@ -14,8 +13,8 @@ export function BackButton() {
     }
 
     return (
-        <Tooltip title="Back" >
-            <img src={leftIcon} onClick={handleClickBack} style={{ transform: 'scale(1.5)', marginBottom: '10px' }} alt='back button'></img>
-        </Tooltip>
+        <div style={{backgroundColor: 'var(--bg-secondary)', width: '20px', height: '20px', padding: '10px', borderRadius: '50%', marginBottom: '10px'}}>
+            <img src={leftIcon} onClick={handleClickBack} style={{ transform: 'scale(1.5)', marginTop: '2px'}} alt='back button'></img>
+        </div>
     );
 }
