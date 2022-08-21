@@ -13,8 +13,22 @@ export function BackButton() {
     }
 
     return (
-        <div style={{backgroundColor: 'var(--bg-secondary)', width: '20px', height: '20px', padding: '10px', borderRadius: '50%', marginBottom: '10px'}}>
-            <img src={leftIcon} onClick={handleClickBack} style={{ transform: 'scale(1.5)', marginTop: '2px'}} alt='back button'></img>
+        <div 
+            onClick={handleClickBack} 
+            style={{
+                backgroundColor: 'var(--bg-secondary)', 
+                width: '24px', 
+                height: '24px', 
+                padding: '10px', 
+                borderRadius: '50%', 
+                marginBottom: '10px'
+            }}
+        >
+            <img 
+                src={leftIcon} 
+                style={{ transform: 'scale(1.5)', marginTop: '4px', marginLeft: '2px'}} 
+                alt='back button'
+            ></img>
         </div>
     );
 }
