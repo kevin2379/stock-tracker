@@ -1,4 +1,5 @@
 # Stock Tracker
+Simple demo app for tracking stocks. 
 
 Deployed app: [stock-tracker.kevin-richardson.com](https://stock-tracker.kevin-richardson.com/quote/AAPL)
 
@@ -39,3 +40,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 ### `npm test`
 
 Launches the test suite.
+
+## Roadmap
+- [ ] Add end-to-end testing with Cypress
+- [ ] Add stock news to existing quote view
+- [ ] Add general market news home page
