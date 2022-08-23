@@ -19,10 +19,9 @@ Deployed app: [stock-tracker.kevin-richardson.com](https://stock-tracker.kevin-r
 - Mobile friendly
 
 ## Screenshots
-
 <img src='/public/screenshots/screenshot-2022-08-23-Desktop.png' alt='Stock Tracker Desktop View' width='100%'>
-<img src='/public/screenshots/screenshot-2022-08-23-Mobile1.png' alt='Stock Tracker Mobile Stock View' width='50%'>
-<img src='/public/screenshots/screenshot-2022-08-23-Mobile2.png' alt='Stock Tracker Mobile Quote View' width='50%'>
+<img src='/public/screenshots/screenshot-2022-08-23-Mobile1.png' alt='Stock Tracker Mobile Stock View' width='45%'>
+<img src='/public/screenshots/screenshot-2022-08-23-Mobile2.png' alt='Stock Tracker Mobile Quote View' width='45%'>
 
 
 ## Installation and Setup Instructions
@@ -39,4 +38,4 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
+Launches the test suite.
