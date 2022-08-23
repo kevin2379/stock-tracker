@@ -18,29 +18,23 @@ Deployed app: [stock-tracker.kevin-richardson.com](https://stock-tracker.kevin-r
 - Chart with up to one year of stock price data
 - Mobile friendly
 
-## Available Scripts
+## Screenshots
+![Stock Tracker Desktop View](/public/screenshots/screenshot-2022-08-23-Desktop.png?raw=true "Desktop")
+![Stock Tracker Mobile Stock View](/public/screenshots/screenshot-2022-08-23-Desktop.png?raw=true "Mobile Stock View")
+![Stock Tracker Mobile Quote View](/public/screenshots/screenshot-2022-08-23-Desktop.png?raw=true "Mobile Quote View")
 
-In the project directory, you can run:
+## Installation and Setup Instructions
+Clone down this repository. You will need node and npm installed globally on your machine.
+
+### `npm install`
+
+Installs the required modules.
 
 ### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
