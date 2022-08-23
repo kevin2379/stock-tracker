@@ -19,9 +19,11 @@ Deployed app: [stock-tracker.kevin-richardson.com](https://stock-tracker.kevin-r
 - Mobile friendly
 
 ## Screenshots
-![Stock Tracker Desktop View](/public/screenshots/screenshot-2022-08-23-Desktop.png?raw=true "Desktop")
-![Stock Tracker Mobile Stock View](/public/screenshots/screenshot-2022-08-23-Mobile1.png?raw=true "Mobile Stock View")
-![Stock Tracker Mobile Quote View](/public/screenshots/screenshot-2022-08-23-Mobile2.png?raw=true "Mobile Quote View")
+
+<img src='/public/screenshots/screenshot-2022-08-23-Desktop.png' alt='Stock Tracker Desktop View' width='100%'>
+<img src='/public/screenshots/screenshot-2022-08-23-Mobile1.png' alt='Stock Tracker Mobile Stock View' width='50%'>
+<img src='/public/screenshots/screenshot-2022-08-23-Mobile2.png' alt='Stock Tracker Mobile Quote View' width='50%'>
+
 
 ## Installation and Setup Instructions
 Clone down this repository. You will need node and npm installed globally on your machine.
