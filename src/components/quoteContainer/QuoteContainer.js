@@ -22,6 +22,18 @@ export function QuoteContainer() {
         dispatch(fetchOHLCV(symbol));
     }, [symbol, dispatch])
 
+    // Update quote every minute
+    const updateQuoteFn = () => {
+        dispatch(fetchCompanyProfile(symbol));
+        dispatch(fetchQuote(symbol));
+        dispatch(fetchOHLCV(symbol));
+    }
+
+    useEffect(() => {
+        const updateQuoteInterval = setInterval(updateQuoteFn, 1000 * 60);
+        return () => clearInterval(updateQuoteInterval);
+    }, []);
+
     return(
         <>
             <QuoteHeader symbol={symbol} />
